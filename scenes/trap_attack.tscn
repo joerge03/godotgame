@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://oi2txq67cd4h"]
+
+[ext_resource type="Script" path="res://scripts/trap_attack.gd" id="1_bf1v7"]
+[ext_resource type="Texture2D" uid="uid://b0okhe4ydjgdo" path="res://Asset/characters/Fire_Spirit/Charge.png" id="2_odc27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2s3w2"]
+size = Vector2(18, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fycpr"]
+atlas = ExtResource("2_odc27")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2yuf"]
+atlas = ExtResource("2_odc27")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02e5o"]
+atlas = ExtResource("2_odc27")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu31o"]
+atlas = ExtResource("2_odc27")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_120ac"]
+atlas = ExtResource("2_odc27")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqsui"]
+atlas = ExtResource("2_odc27")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mgnx"]
+atlas = ExtResource("2_odc27")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1kdg"]
+atlas = ExtResource("2_odc27")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmbra"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fycpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2yuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02e5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu31o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_120ac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqsui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mgnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1kdg")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[node name="trapAttack" type="Area2D"]
+position = Vector2(405, 201)
+collision_layer = 8
+script = ExtResource("1_bf1v7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 32
+position = Vector2(-2, 2)
+shape = SubResource("RectangleShape2D_2s3w2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 32
+sprite_frames = SubResource("SpriteFrames_lmbra")
+animation = &"attack"

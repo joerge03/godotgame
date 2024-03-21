@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv5a56xdv68t7"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_o08tr"]
+[ext_resource type="PackedScene" uid="uid://b30mq6ba3btsw" path="res://Scenes/player.tscn" id="2_rfje3"]
+[ext_resource type="Texture2D" uid="uid://b1ju1xhgju05t" path="res://icon.svg" id="3_7rf4g"]
+[ext_resource type="Script" path="res://scripts/jump_Pad.gd" id="4_akxno"]
+[ext_resource type="PackedScene" uid="uid://cmiyq3ley76oj" path="res://Scenes/jump_pad.tscn" id="4_mafta"]
+[ext_resource type="PackedScene" uid="uid://uh4n0n11r57j" path="res://Scenes/trap.tscn" id="5_h3d25"]
+[ext_resource type="Script" path="res://scripts/trap.gd" id="8_i43ld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phcpx"]
+size = Vector2(1003, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kk33"]
+size = Vector2(31.6515, 7.01645)
+
+[node name="Game" type="Node2D"]
+visible = false
+script = ExtResource("1_o08tr")
+
+[node name="Player" parent="." instance=ExtResource("2_rfje3")]
+visibility_layer = 2
+position = Vector2(144, 187)
+gravity = null
+speed = null
+jumpForce = null
+stamina = null
+
+[node name="JumpPad" parent="." instance=ExtResource("4_mafta")]
+position = Vector2(914, 248)
+script = ExtResource("4_akxno")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+light_mask = 2
+position = Vector2(-2, 11)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(584, 277)
+scale = Vector2(7.82813, 0.15625)
+texture = ExtResource("3_7rf4g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(583, 277)
+shape = SubResource("RectangleShape2D_phcpx")
+
+[node name="Deathzone" type="Area2D" parent="."]
+position = Vector2(574, 321)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+light_mask = 4
+position = Vector2(-8, 119)
+scale = Vector2(49.2092, -1.85277)
+shape = SubResource("RectangleShape2D_1kk33")
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="mark1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(988, 244)
+
+[node name="startPoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(110, 243)
+
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="Trap" parent="Traps" instance=ExtResource("5_h3d25")]
+position = Vector2(653, 235)
+script = ExtResource("8_i43ld")

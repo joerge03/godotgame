@@ -1,0 +1,142 @@
+[gd_scene load_steps=21 format=3 uid="uid://cmiyq3ley76oj"]
+
+[ext_resource type="Script" path="res://scripts/jump_pad.gd" id="1_5kjse"]
+[ext_resource type="Texture2D" uid="uid://b0nw8qrr0t2ca" path="res://Asset/tileset/Objects/chain2.png" id="2_4klw5"]
+[ext_resource type="Texture2D" uid="uid://cxgkpaaaqmev7" path="res://Asset/jumpad.png" id="3_7pvit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lua0f"]
+size = Vector2(38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw6xr"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqa7r"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxogd"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3stmv"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6ne6"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jc47"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcq6e"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upsf0"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64r7x"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(2048, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olw60"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(2304, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb3kj"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(2560, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evtjj"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(2816, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnh1o"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(3072, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlvaq"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(3328, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kprvs"]
+atlas = ExtResource("3_7pvit")
+region = Rect2(3584, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5acu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4klw5")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cw6xr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqa7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxogd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3stmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6ne6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jc47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcq6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upsf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64r7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olw60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb3kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evtjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnh1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlvaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kprvs")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 40.0
+}]
+
+[node name="JumpPad" type="Area2D"]
+light_mask = 8
+script = ExtResource("1_5kjse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 28)
+shape = SubResource("RectangleShape2D_lua0f")
+
+[node name="jumpPadTexture" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_t5acu")
+animation = &"Idle"
