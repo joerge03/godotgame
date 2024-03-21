@@ -1,5 +1,8 @@
 extends Area2D
+class_name TrapAttack
 
+
+signal enemyHitPlayer
 
 @onready var animation = $AnimatedSprite2D
 
@@ -7,7 +10,7 @@ extends Area2D
 
 func playerHit(body):
 	if body as Player:
-		body.queue_free()
+		emit_signal("enemyHitPlayer", body)
 		queue_free()
 	elif body:
 		queue_free()

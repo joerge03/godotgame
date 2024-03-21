@@ -17,6 +17,7 @@ signal triggerTrap
 
 func bodyEnteredHandler(body):
 	if body is Player:
+		print("sdfasdfasdf")
 		emit_signal("triggerTrap", body)
 		
 func idle():
@@ -25,10 +26,12 @@ func idle():
 func attack():
 	var lineOfSiteValue: Player
 	var isPlayerLeft 
-	var trapAttackInstance = trapAttackScene.instantiate()
+	var trapAttackInstance: TrapAttack = trapAttackScene.instantiate()
 	if lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player:
 		lineOfSiteValue = lineOfSightRef.get_collider(0)
 		isPlayerLeft =  global_position.x > lineOfSiteValue.global_position.x
+		
+		trapAttackInstance.enemyHitPlayer.connect(bodyEnteredHandler)
 		attackPointRef.add_child(trapAttackInstance)
 	else:
 		attackCooldown.stop() 

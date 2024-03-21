@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+
 @onready var jump_timer = $Jump_timer
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -40,7 +41,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("up") && is_on_floor():
 		# Check if there is stamina to jump
-		if stamina <= 0 && !jump_timer.time_left:
+		if stamina <= 0 && jump_timer.time_left == 0:
 			jump_timer.connect("timeout", staminaReset)
 			jump_timer.start()
 		elif stamina >=100:
