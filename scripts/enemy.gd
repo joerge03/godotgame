@@ -7,13 +7,8 @@ signal triggerTrap
 @onready var animationPlayer = $AnimationPlayer
 @onready var lineOfSightRef = $lineOfSight
 @onready var sprite2d = $Sprite2D
-@onready var attackCooldown = $attackCooldown
+@onready var attackCooldown = $attackCooldown8
 #@onready var trapAttackInstance = $trap_attack
-
-
-
-
-
 
 func bodyEnteredHandler(body):
 	if body is Player:
@@ -49,10 +44,8 @@ func attack():
 
 		
 func _process(_delta): 
-	
-	
 	#TO FOLLOW THE ENEMY RAYCAST
-		lineOfSightRef.scale.y =  -lineOfSightRef.scale.y if sprite2d.flip_h else abs(lineOfSightRef.scale.y)  
+	lineOfSightRef.scale.y =  -lineOfSightRef.scale.y if sprite2d.flip_h else abs(lineOfSightRef.scale.y)  
 		
 	
 
@@ -79,6 +72,7 @@ func _physics_process(_delta):
 	
 func _ready():  
 	enemyBodyRef.connect("body_entered", bodyEnteredHandler)
+	get_tree().get_nodes_in_group("enemy")
 	
 	#attackCooldown.connect("timeout", attack)
 	

@@ -195,7 +195,7 @@ tracks/14/keys = {
 
 [sub_resource type="Animation" id="Animation_w7310"]
 resource_name = "idle"
-length = 0.6
+length = 0.7
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -241,7 +241,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"transitions": PackedFloat32Array(-2, -0.5, -2, -2, -2, -2),
 "update": 0,
 "values": [0, 1, 2, 3, 4, 5]
 }
@@ -514,7 +514,7 @@ _data = {
 "shoot": SubResource("Animation_wgm7t")
 }
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
 light_mask = 16
 position = Vector2(-4, -18)
 script = ExtResource("1_wqc5h")
@@ -526,6 +526,7 @@ offset = Vector2(2.61, 0.85)
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 14)
 scale = Vector2(1.06404, 1.118)
 shape = SubResource("CapsuleShape2D_g20r0")
@@ -543,6 +544,7 @@ target_position = Vector2(80.9091, 0)
 [node name="enemyBody" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemyBody"]
+visible = false
 position = Vector2(1, 1)
 scale = Vector2(1.06404, 1.118)
 shape = SubResource("CapsuleShape2D_g20r0")

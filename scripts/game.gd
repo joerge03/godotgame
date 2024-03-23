@@ -18,6 +18,7 @@ func playerFallHandler(body):
 
 func triggerTrapHandler(body):
 	if body is Player:
+		body.staminaReset()
 		body.global_position = MainSpawnPoint.global_position
 	
 

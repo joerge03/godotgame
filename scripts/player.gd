@@ -15,11 +15,13 @@ class_name Player
 
 @export var jumpForce := -200
 
-@export var stamina := 300
+@export var defaultStamina := 700
+
+var stamina = defaultStamina 
 
 
 func staminaReset():
-	stamina = 300
+	stamina = defaultStamina
 	jump_timer.stop()
 	
 
