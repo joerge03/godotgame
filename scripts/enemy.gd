@@ -7,7 +7,7 @@ signal triggerTrap
 @onready var animationPlayer = $AnimationPlayer
 @onready var lineOfSightRef = $lineOfSight
 @onready var sprite2d = $Sprite2D
-@onready var attackCooldown = $attackCooldown8
+@onready var attackCooldown = $attackCooldown
 #@onready var trapAttackInstance = $trap_attack
 
 func bodyEnteredHandler(body):
