@@ -87,6 +87,7 @@ run={
 2d_render/layer_6="enemy_projectile"
 2d_physics/layer_1="player"
 2d_physics/layer_2="Ground"
+2d_physics/layer_3="EnemyOrTraps"
 2d_physics/layer_4="enemy_projectile"
 
 [rendering]

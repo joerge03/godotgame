@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv5a56xdv68t7"]
+[gd_scene load_steps=9 format=3 uid="uid://bv5a56xdv68t7"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_o08tr"]
 [ext_resource type="PackedScene" uid="uid://b30mq6ba3btsw" path="res://scenes/player.tscn" id="2_6l324"]
 [ext_resource type="Texture2D" uid="uid://b1ju1xhgju05t" path="res://icon.svg" id="3_7rf4g"]
 [ext_resource type="PackedScene" uid="uid://cmiyq3ley76oj" path="res://scenes/jump_pad.tscn" id="4_mafta"]
 [ext_resource type="PackedScene" uid="uid://bplpe4xolc6wl" path="res://scenes/enemy.tscn" id="5_cdxl4"]
+[ext_resource type="PackedScene" uid="uid://uh4n0n11r57j" path="res://scenes/trap.tscn" id="6_5e280"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phcpx"]
 size = Vector2(1133.5, 20)
@@ -16,6 +17,7 @@ size = Vector2(31.6515, 7.01645)
 script = ExtResource("1_o08tr")
 
 [node name="Player" parent="." instance=ExtResource("2_6l324")]
+z_index = 100
 collision_mask = 255
 
 [node name="JumpPad" parent="." instance=ExtResource("4_mafta")]
@@ -57,3 +59,6 @@ position = Vector2(110, 243)
 
 [node name="enemy" parent="Traps" instance=ExtResource("5_cdxl4")]
 position = Vector2(529, 244)
+
+[node name="Trap" parent="Traps" instance=ExtResource("6_5e280")]
+position = Vector2(631, 227)

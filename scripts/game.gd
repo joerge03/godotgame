@@ -2,7 +2,7 @@ extends Node2D
 @onready var DeathzoneRef = $Deathzone 
 @onready var SpawnPoints = $SpawnPoints
 @onready var MainSpawnPoint = $SpawnPoints/startPoint
-@onready var trap = $Traps/enemy
+@onready var traps = $Traps
 
 
 func playerFallHandler(body):
@@ -18,6 +18,7 @@ func playerFallHandler(body):
 
 func triggerTrapHandler(body):
 	if body is Player:
+		print("test")
 		body.staminaReset()
 		body.global_position = MainSpawnPoint.global_position
 	
@@ -25,7 +26,12 @@ func triggerTrapHandler(body):
 
 func _ready():
 	DeathzoneRef.connect("body_entered", playerFallHandler )
-	trap.connect("triggerTrap",triggerTrapHandler)
+	#trap.connect("triggerTrap",triggerTrapHandler)
+	for trap in traps.get_children():
+		
+		print(trap)
+		trap.triggerTrap.connect(triggerTrapHandler)
+	
 	
 func _process(_delta):
 	pass
