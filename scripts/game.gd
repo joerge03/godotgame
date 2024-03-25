@@ -26,15 +26,10 @@ func triggerTrapHandler(body):
 
 func _ready():
 	DeathzoneRef.connect("body_entered", playerFallHandler )
-	#trap.connect("triggerTrap",triggerTrapHandler)
 	for trap in traps.get_children():
-		
-		print(trap)
 		trap.triggerTrap.connect(triggerTrapHandler)
 	
 	
-func _process(_delta):
-	pass
 
 func _physics_process(_delta):
 	if Input.is_action_pressed("reset"):

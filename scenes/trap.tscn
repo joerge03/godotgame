@@ -74,7 +74,7 @@ script = ExtResource("1_jnmne")
 speed = 10.0
 
 [node name="Trap" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Trap"]
 texture = ExtResource("2_v4y74")

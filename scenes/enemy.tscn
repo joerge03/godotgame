@@ -517,6 +517,7 @@ _data = {
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
 light_mask = 16
 position = Vector2(-4, -18)
+collision_layer = 0
 script = ExtResource("1_wqc5h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
