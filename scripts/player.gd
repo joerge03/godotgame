@@ -4,8 +4,8 @@ class_name Player
 
 @onready var jump_timer = $Jump_timer
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var attack_collision = $attack_collision
 @onready var animationPlayer = $AnimationPlayer
+@onready var attack_collision: Area2D = $Area2D
 
 
 
@@ -26,12 +26,27 @@ func staminaReset():
 	stamina = defaultStamina
 	jump_timer.stop()
 	
+func _ready():
+	attack_collision.position = Vector2(30, -25)
+	
+
+#func _process(delta):
+	#var attackCollision= attack_collision.transform.x
+	#if  (animated_sprite.flip_h and attack_collision.position.x != -attackCollision):
+		#attack_collision.position.x = -attackCollision
+		##print(attack_collision.position.x)
+		#print(animated_sprite.flip_h,attack_collision.position.x != -attackCollision)
+	#elif !animated_sprite.flip_h && attack_collision.position.x != abs(attackCollision):
+		#attack_collision.position.x = abs(attackCollision)
+		#print("asdfasdf")
+	
 
 func _physics_process(delta):
 	var direction = Input.get_axis("left","right")
 	
 	
 	var isMovement = direction== -1 || direction == 1
+	#print(direction)
 	
 	
 	if !is_on_floor():
@@ -54,28 +69,41 @@ func _physics_process(delta):
 			stamina -= 100
 			velocity.y = jumpForce
 			
+			
 	
 	updateAnimation(direction, isMovement)
+	
+	
+	
 			
 	#Animation for run
 	move_and_slide()
 
 func _input(event):
 	if Input.is_action_just_pressed("attack"):
-		print("ASdf")
+		#print("ASdf")
 		animationPlayer.play("attack")
 	
 	
 func updateAnimation(direction, isMovement):
 	if direction != 0:
 		animated_sprite.flip_h = direction == -1
-		attack_collision.position.x = -attack_collision.position.x if direction == -1 else abs(attack_collision.position.x)
+		#print( attack_collision.position.x *-1)
+		if animated_sprite.flip_h:
+			attack_collision.position.x = -abs(attack_collision.position.x)
+			print(attack_collision.position.x)
+		else:
+			#print("right")
+			attack_collision.position.x = abs(attack_collision.position.x)
+		
 	if !is_on_floor():
 		animated_sprite.play("Jump")
 		return
 	if Input.is_action_pressed("run") && isMovement:
 		animated_sprite.play("Run")
-	elif isMovement == true && is_on_floor():
+	elif isMovement && is_on_floor():
 		animated_sprite.play("Walk")
 	if !direction && is_on_floor():
 		animated_sprite.play("Idle")
+	
+	
