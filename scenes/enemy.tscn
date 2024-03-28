@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bplpe4xolc6wl"]
+[gd_scene load_steps=13 format=3 uid="uid://bplpe4xolc6wl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wqc5h"]
 [ext_resource type="Texture2D" uid="uid://cig3idvpcdudr" path="res://Asset/characters/Fire_Spirit/Shot.png" id="2_33pha"]
 [ext_resource type="Texture2D" uid="uid://dxd1a4b8a6ds6" path="res://Asset/characters/Fire_Spirit/Idle.png" id="3_240he"]
+[ext_resource type="PackedScene" uid="uid://ckdtcrw34tmn2" path="res://scenes/components/hit_box.tscn" id="4_yjmwp"]
+[ext_resource type="PackedScene" uid="uid://chpnq8bj3qaob" path="res://scenes/components/life_component.tscn" id="5_l17fm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g20r0"]
 radius = 11.2778
@@ -514,6 +516,9 @@ _data = {
 "shoot": SubResource("Animation_wgm7t")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqn1v"]
+radius = 14.1421
+
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
 light_mask = 16
 position = Vector2(-4, -18)
@@ -539,6 +544,7 @@ position = Vector2(-274, -15)
 scale = Vector2(6.6, 2.18)
 shape = SubResource("RectangleShape2D_ecc7c")
 target_position = Vector2(80.9091, 0)
+collide_with_bodies = false
 
 [node name="enemyBody" type="Area2D" parent="."]
 
@@ -556,3 +562,13 @@ autoplay = "idle"
 [node name="attackCooldown" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="HitBox" parent="." node_paths=PackedStringArray("life_component") instance=ExtResource("4_yjmwp")]
+life_component = NodePath("../LifeComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(3, 20)
+shape = SubResource("CircleShape2D_wqn1v")
+
+[node name="LifeComponent" parent="." instance=ExtResource("5_l17fm")]
+health = 1

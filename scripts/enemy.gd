@@ -12,7 +12,6 @@ signal triggerTrap
 
 func bodyEnteredHandler(body):
 	if body is Player:
-		print("sdfasdfasdf")
 		emit_signal("triggerTrap", body)
 		
 func idle():

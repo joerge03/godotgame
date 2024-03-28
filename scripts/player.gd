@@ -5,7 +5,8 @@ class_name Player
 @onready var jump_timer = $Jump_timer
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animationPlayer = $AnimationPlayer
-@onready var attack_collision: Area2D = $Area2D
+@onready var attack_collision: Area2D = $attack
+@onready var attackSprite:= $attackSprite
 
 
 
@@ -19,16 +20,16 @@ class_name Player
 
 @export var defaultStamina := 700
 
-var stamina = defaultStamina 
+var stamina = defaultStamina
 
 
 func staminaReset():
 	stamina = defaultStamina
 	jump_timer.stop()
-	
+
 func _ready():
 	attack_collision.position = Vector2(30, -25)
-	
+
 
 #func _process(delta):
 	#var attackCollision= attack_collision.transform.x
@@ -39,27 +40,25 @@ func _ready():
 	#elif !animated_sprite.flip_h && attack_collision.position.x != abs(attackCollision):
 		#attack_collision.position.x = abs(attackCollision)
 		#print("asdfasdf")
-	
+
 
 func _physics_process(delta):
 	var direction = Input.get_axis("left","right")
-	
-	
+
 	var isMovement = direction== -1 || direction == 1
-	#print(direction)
-	
-	
+
+
 	if !is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y >= 600:
 			velocity.y = 600
 	## Gravity
 	velocity.x = direction * speed
-	
+
 	if Input.is_action_pressed("run") && isMovement:
 		velocity.x = direction * run
-	
-		
+
+
 	if Input.is_action_pressed("up") && is_on_floor():
 		# Check if there is stamina to jump
 		if stamina <= 0 && jump_timer.time_left == 0:
@@ -68,14 +67,14 @@ func _physics_process(delta):
 		elif stamina >=100:
 			stamina -= 100
 			velocity.y = jumpForce
-			
-			
-	
+
+
+
 	updateAnimation(direction, isMovement)
-	
-	
-	
-			
+
+
+
+
 	#Animation for run
 	move_and_slide()
 
@@ -83,19 +82,20 @@ func _input(event):
 	if Input.is_action_just_pressed("attack"):
 		#print("ASdf")
 		animationPlayer.play("attack")
-	
-	
+
+
 func updateAnimation(direction, isMovement):
 	if direction != 0:
 		animated_sprite.flip_h = direction == -1
-		#print( attack_collision.position.x *-1)
-		if animated_sprite.flip_h:
-			attack_collision.position.x = -abs(attack_collision.position.x)
-			print(attack_collision.position.x)
-		else:
-			#print("right")
-			attack_collision.position.x = abs(attack_collision.position.x)
 		
+		attackSprite.flip_h = animated_sprite.flip_h 
+		attack_collision.position.x = -abs(attack_collision.position.x) if animated_sprite.flip_h else abs(attack_collision.position.x)
+		#if animated_sprite.flip_h:
+			#attack_collision.position.x = -abs(attack_collision.position.x)
+			#attackSprite.flip_h = true
+		#else:
+			#attack_collision.position.x = abs(attack_collision.position.x)
+
 	if !is_on_floor():
 		animated_sprite.play("Jump")
 		return
@@ -105,5 +105,5 @@ func updateAnimation(direction, isMovement):
 		animated_sprite.play("Walk")
 	if !direction && is_on_floor():
 		animated_sprite.play("Idle")
-	
-	
+
+

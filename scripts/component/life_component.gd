@@ -1,5 +1,5 @@
 class_name LifeComponent
-extends Area2D
+extends Node2D
 
 @export var health := 10
 
@@ -12,7 +12,8 @@ func _ready():
 
 
 func damage(attack: Attack):
-	health -= attack.attack_damage
+	print(default_health, "hadsgasd")
+	default_health -= attack.attack_damage
 	if default_health <= 0:
 		get_parent().queue_free()
 
