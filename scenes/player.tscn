@@ -12,10 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://drlkwao0lp7n5" path="res://Asset/characters/Skeleton/Walk.png" id="9_qhw7f"]
 [ext_resource type="PackedScene" uid="uid://baqp873j74fur" path="res://scenes/components/attack.tscn" id="11_3jt0y"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67agp"]
-radius = 11.0
-height = 38.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ap3t6"]
 atlas = ExtResource("1_cmevc")
 region = Rect2(0, 0, 128, 128)
@@ -469,7 +465,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8y4g"]
-radius = 15.5242
+radius = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67agp"]
+radius = 7.0
+height = 38.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_664vw"]
 size = Vector2(23.5, 17.5)
@@ -502,7 +502,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("attackSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -611,37 +611,28 @@ _data = {
 script = ExtResource("1_0tncr")
 
 [node name="attackSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -65)
+position = Vector2(7, -65)
 texture = ExtResource("2_m8wdk")
 hframes = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -17)
-shape = SubResource("CapsuleShape2D_67agp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -65)
 sprite_frames = SubResource("SpriteFrames_2d2op")
-animation = &"Attack_3"
-frame = 1
-frame_progress = 0.933854
+animation = &"Idle"
+frame_progress = 0.839391
+flip_h = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-visibility_layer = 9
-z_index = 100
-z_as_relative = false
-position = Vector2(-1, -110)
-zoom = Vector2(1.2, 1.2)
-limit_top = -80
-limit_bottom = 400
+[node name="headCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -55)
+shape = SubResource("CircleShape2D_p8y4g")
+
+[node name="bodyCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -19)
+shape = SubResource("CapsuleShape2D_67agp")
 
 [node name="Jump_timer" type="Timer" parent="."]
 wait_time = 2.0
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -52)
-shape = SubResource("CircleShape2D_p8y4g")
 
 [node name="attack" parent="." instance=ExtResource("11_3jt0y")]
 position = Vector2(30, -21)
@@ -655,3 +646,12 @@ libraries = {
 "": SubResource("AnimationLibrary_1vmwo")
 }
 autoplay = "attack"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visibility_layer = 9
+z_index = 100
+z_as_relative = false
+position = Vector2(-1, -110)
+zoom = Vector2(1.2, 1.2)
+limit_top = -80
+limit_bottom = 400

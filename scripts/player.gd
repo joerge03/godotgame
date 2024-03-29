@@ -9,6 +9,12 @@ class_name Player
 @onready var attackSprite:= $attackSprite
 
 
+var states: Dictionary = {
+	"test": 1,
+	1: 2
+}
+
+
 
 @export var gravity := 400
 
@@ -29,17 +35,6 @@ func staminaReset():
 
 func _ready():
 	attack_collision.position = Vector2(30, -25)
-
-
-#func _process(delta):
-	#var attackCollision= attack_collision.transform.x
-	#if  (animated_sprite.flip_h and attack_collision.position.x != -attackCollision):
-		#attack_collision.position.x = -attackCollision
-		##print(attack_collision.position.x)
-		#print(animated_sprite.flip_h,attack_collision.position.x != -attackCollision)
-	#elif !animated_sprite.flip_h && attack_collision.position.x != abs(attackCollision):
-		#attack_collision.position.x = abs(attackCollision)
-		#print("asdfasdf")
 
 
 func _physics_process(delta):

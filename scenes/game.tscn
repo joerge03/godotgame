@@ -27,6 +27,7 @@ position = Vector2(914, 248)
 light_mask = 2
 position = Vector2(-2, 11)
 collision_layer = 2
+collision_mask = 255
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
 modulate = Color(0, 0, 0, 1)
@@ -58,7 +59,7 @@ position = Vector2(110, 243)
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="enemy" parent="Traps" instance=ExtResource("5_cdxl4")]
-position = Vector2(529, 244)
+position = Vector2(529, 238)
 
 [node name="Trap" parent="Traps" instance=ExtResource("6_5e280")]
-position = Vector2(631, 227)
+position = Vector2(805, 246)

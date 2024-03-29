@@ -42,13 +42,18 @@ func attack():
 
 
 		
-func _process(_delta): 
+func _process(_delta):
 	#TO FOLLOW THE ENEMY RAYCAST
-	lineOfSightRef.scale.y =  -lineOfSightRef.scale.y if sprite2d.flip_h else abs(lineOfSightRef.scale.y)  
+	lineOfSightRef.scale.y = -lineOfSightRef.scale.y if sprite2d.flip_h else abs(lineOfSightRef.scale.y)  
 		
 	
 
 func _physics_process(_delta):
+	move_and_slide()
+	if !is_on_floor():
+		velocity.y += 100 * _delta
+		if velocity.y >= 600:
+			velocity.y = 600
 	# VARIABLES
 	var line_of_sight_scale_y = lineOfSightRef.scale.y
 	
@@ -71,8 +76,3 @@ func _physics_process(_delta):
 	
 func _ready():  
 	enemyBodyRef.connect("body_entered", bodyEnteredHandler)
-	get_tree().get_nodes_in_group("enemy")
-	
-	#attackCooldown.connect("timeout", attack)
-	
-	#pass
