@@ -8,6 +8,8 @@ signal triggerTrap
 @onready var lineOfSightRef = $lineOfSight
 @onready var sprite2d = $Sprite2D
 @onready var attackCooldown = $attackCooldown
+@onready var frontRayCast = $frontFloorCast
+@onready var backRayCast = $backFloorCast
 #@onready var trapAttackInstance = $trap_attack
 
 func bodyEnteredHandler(body):
@@ -28,7 +30,7 @@ func attack():
 		trapAttackInstance.enemyHitPlayer.connect(bodyEnteredHandler)
 		attackPointRef.add_child(trapAttackInstance)
 	else:
-		attackCooldown.stop() 
+		attackCooldown.stop()
 		return
 		
 		
@@ -58,12 +60,8 @@ func _physics_process(_delta):
 	var line_of_sight_scale_y = lineOfSightRef.scale.y
 	
 	# CHECK IF IS COLLIDING WITH PLAYER
-	var isCollidingWithPlayer = lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player
-	
-	
-	
-	if  isCollidingWithPlayer && attackCooldown.is_stopped() && attackCooldown.time_left == 0:
-		
+	var isCollidingWithPlayer = lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player	
+	if  isCollidingWithPlayer && attackCooldown.is_stopped() && attackCooldown.time_left == 0:		
 		# SET IF THE ENEMY IS LOOKING LEFT OR RIGHT
 		var player:Player = lineOfSightRef.get_collider(0)
 		sprite2d.flip_h = global_position.x > player.global_position.x
@@ -73,6 +71,12 @@ func _physics_process(_delta):
 		attackCooldown.start()
 	elif !isCollidingWithPlayer:
 		attackCooldown.stop()
+		
+	#CHECK IF ENEMY IS FALLING
+	if !frontRayCast.is_colliding() || !backRayCast.is_colliding():
+		velocity.x = abs(velocity.x) if velocity.x < 0 else -abs(velocity.x) 
+		
+		
 	
 func _ready():  
 	enemyBodyRef.connect("body_entered", bodyEnteredHandler)

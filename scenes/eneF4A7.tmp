@@ -505,22 +505,18 @@ shape = SubResource("CircleShape2D_wqn1v")
 script = ExtResource("6_baf4b")
 init_state = NodePath("EnemyIdle")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "frontRayCast", "backRayCast", "timer")]
+[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "frontRayCast", "backRayCast")]
 script = ExtResource("7_k5ili")
 enemy = NodePath("../..")
 frontRayCast = NodePath("../../frontFloorCast")
 backRayCast = NodePath("../../backFloorCast")
-timer = NodePath("../../Timer")
 
 [node name="frontFloorCast" type="RayCast2D" parent="."]
-position = Vector2(21, 18)
+position = Vector2(17, 18)
 target_position = Vector2(0, 20)
 collision_mask = 2
 
 [node name="backFloorCast" type="RayCast2D" parent="."]
-position = Vector2(-16, 18)
+position = Vector2(-11, 18)
 target_position = Vector2(0, 20)
 collision_mask = 2
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true

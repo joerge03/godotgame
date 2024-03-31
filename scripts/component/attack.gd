@@ -7,7 +7,7 @@ var attackDamage = Attack.new()
 
 func attack(body):
 	if body is HitBox:
-		print(body)
+		#print(body)
 		
 		body.damage(attackDamage)
 

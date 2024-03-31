@@ -17,7 +17,7 @@ func _ready():
 		current_state = init_state
 			
 func on_transition(state: State, new_state_name: String):
-	print("tranasdfasdf")
+	#print("tranasdfasdf")
 	var latest_state: State = states.get(new_state_name.to_lower())
 	if state == current_state && current_state && state && latest_state:
 		current_state._exit()
