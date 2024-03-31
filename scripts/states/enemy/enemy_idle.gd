@@ -29,13 +29,15 @@ func wander():
 		print(timer.time_left == 0, "is timer left 0? ", timer.time_left == 0 )
 		print(!(frontRayCast.is_colliding() && backRayCast.is_colliding()), "is not about to fall?" )
 		if !(frontRayCast.is_colliding() && backRayCast.is_colliding()) && timer.time_left == 0 && timer.is_stopped():
+			if !timer.timeout.is_connected(resetWait):
+				timer.timeout.connect(resetWait)
 			test()
-			timer.timeout.connect(resetWait)
-			time = randf_range(1,2)
+			time = 0.5
 		else :
 			directionX = randi_range(-1,1)
 			print("time 0")
 			time = randf_range(1,2)
+		
 			
 			
 		#print(timer.time_left, "time left")
@@ -58,7 +60,7 @@ func _update(delta):
 			wander()
 			timer.start(1)
 			print("run")
-			wait = 0.5
+			wait = 0.1
 		
 		
 	
