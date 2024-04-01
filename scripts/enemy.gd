@@ -56,12 +56,15 @@ func _physics_process(_delta):
 		velocity.y += 100 * _delta
 		if velocity.y >= 600:
 			velocity.y = 600
+	if velocity.x != 0:
+		sprite2d.flip_h = velocity.x <0
+		
 	# VARIABLES
 	var line_of_sight_scale_y = lineOfSightRef.scale.y
 	
 	# CHECK IF IS COLLIDING WITH PLAYER
-	var isCollidingWithPlayer = lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player	
-	if  isCollidingWithPlayer && attackCooldown.is_stopped() && attackCooldown.time_left == 0:		
+	var isCollidingWithPlayer = lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player
+	if  isCollidingWithPlayer && attackCooldown.is_stopped() && attackCooldown.time_left == 0:
 		# SET IF THE ENEMY IS LOOKING LEFT OR RIGHT
 		var player:Player = lineOfSightRef.get_collider(0)
 		sprite2d.flip_h = global_position.x > player.global_position.x

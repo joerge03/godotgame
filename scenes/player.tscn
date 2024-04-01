@@ -607,7 +607,7 @@ _data = {
 "attack": SubResource("Animation_fyfft")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_0tncr")
 
 [node name="attackSprite" type="Sprite2D" parent="."]

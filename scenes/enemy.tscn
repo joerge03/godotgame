@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bplpe4xolc6wl"]
+[gd_scene load_steps=16 format=3 uid="uid://bplpe4xolc6wl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wqc5h"]
 [ext_resource type="Texture2D" uid="uid://cig3idvpcdudr" path="res://Asset/characters/Fire_Spirit/Shot.png" id="2_33pha"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chpnq8bj3qaob" path="res://scenes/components/life_component.tscn" id="5_l17fm"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="6_baf4b"]
 [ext_resource type="Script" path="res://scripts/states/enemy/enemy_idle.gd" id="7_k5ili"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_follow.gd" id="8_dvhv2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g20r0"]
 radius = 11.2778
@@ -511,6 +512,9 @@ enemy = NodePath("../..")
 frontRayCast = NodePath("../../frontFloorCast")
 backRayCast = NodePath("../../backFloorCast")
 timer = NodePath("../../Timer")
+
+[node name="EnemyFollow" type="Node" parent="StateMachine"]
+script = ExtResource("8_dvhv2")
 
 [node name="frontFloorCast" type="RayCast2D" parent="."]
 position = Vector2(21, 18)
