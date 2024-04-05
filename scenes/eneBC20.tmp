@@ -14,7 +14,6 @@ radius = 11.2778
 height = 35.7129
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecc7c"]
-size = Vector2(4, 14.87)
 
 [sub_resource type="Animation" id="Animation_pj0bq"]
 length = 0.001
@@ -470,16 +469,11 @@ shape = SubResource("CapsuleShape2D_g20r0")
 
 [node name="attackPoint" type="Node" parent="."]
 
-[node name="followRayCast" type="RayCast2D" parent="."]
-position = Vector2(0, 13)
-scale = Vector2(3, 3)
-target_position = Vector2(120, 0)
-
 [node name="lineOfSight" type="ShapeCast2D" parent="."]
-position = Vector2(5, 14)
-scale = Vector2(6.054, 2)
+position = Vector2(-176, -5)
+scale = Vector2(6.6, 2.18)
 shape = SubResource("RectangleShape2D_ecc7c")
-target_position = Vector2(40, 0)
+target_position = Vector2(54.3939, 0.458716)
 
 [node name="enemyBody" type="Area2D" parent="."]
 
@@ -519,9 +513,8 @@ frontRayCast = NodePath("../../frontFloorCast")
 backRayCast = NodePath("../../backFloorCast")
 timer = NodePath("../../Timer")
 
-[node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="EnemyFollow" type="Node" parent="StateMachine"]
 script = ExtResource("8_dvhv2")
-enemy = NodePath("../..")
 
 [node name="frontFloorCast" type="RayCast2D" parent="."]
 position = Vector2(21, 18)

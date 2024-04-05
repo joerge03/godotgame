@@ -9,58 +9,43 @@ extends State
 
 var directionX: int
 var time: float
-var wait: float  = 0
+var player: Player
 
 
 		#-1 for LEFT
 		# 1 for RIGHT
 		# 0 for STOP
 
-
-func test():
-	directionX = -1 if directionX > 0 else 1
-	print("test")
-
-func resetWait():
-	wait = 0
-
 func wander():
 		if !(frontRayCast.is_colliding() && backRayCast.is_colliding()) && timer.time_left == 0 && timer.is_stopped():
-			if !timer.timeout.is_connected(resetWait):
-				timer.timeout.connect(resetWait)
-			test()
-			time = 0.5
-		else :
+			directionX = -1 if directionX > 0 else 1
+			time = randf_range(0.5,1 )
+		else: 
 			directionX = randi_range(-1,1)
 			time = randf_range(1,2)
-		
-			
-			
-		#print(timer.time_left, "time left")
-			
-		#else:
-			#print("colliding")
-			#directionX = randf_range(-1,1)
 func _enter():
 	timer.start(1)
+	player = get_tree().get_first_node_in_group("player")
 	
 func _update(delta):
-		if time >0:
-			time -= delta
-		else: wander()
 		
-		if wait >0:
-			wait -= delta
+		#print(time)
 		
-		if !(frontRayCast.is_colliding() && backRayCast.is_colliding()) && timer.time_left == 0 && wait == 0:
+		if !(frontRayCast.is_colliding() && backRayCast.is_colliding()) && timer.time_left == 0:
 			wander()
 			timer.start(1)
-			wait = 0.1
-		
-		
-	
+		else:
+			if time >0:
+				time -= delta
+			else: wander()
 	
 func _physics_update(delta):
+	
+	
+	
+	var direction = sign(player.global_position.x - enemy.global_position.x)
+	
+	#print(player.global_position)
 	if enemy:
 		enemy.velocity.x = directionX * speed
 		
