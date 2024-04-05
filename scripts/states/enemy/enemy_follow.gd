@@ -2,7 +2,7 @@ class_name EnemyFollow
 extends State
 
 @export var enemy: CharacterBody2D
-@export var spee
+@export var speed: float
 
 var player: Player
 var radius
@@ -14,9 +14,10 @@ func _ready():
 	
 	
 	
-func _update():
+func _update(delta):
 	radius = player.global_position.x - enemy.global_position.x
-	pass
+	
+	
 	
 	
 	
