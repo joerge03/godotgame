@@ -1,22 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://bplpe4xolc6wl"]
+[gd_scene load_steps=16 format=3 uid="uid://bplpe4xolc6wl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wqc5h"]
 [ext_resource type="Texture2D" uid="uid://cig3idvpcdudr" path="res://Asset/characters/Fire_Spirit/Shot.png" id="2_33pha"]
 [ext_resource type="Texture2D" uid="uid://dxd1a4b8a6ds6" path="res://Asset/characters/Fire_Spirit/Idle.png" id="3_240he"]
-[ext_resource type="Texture2D" uid="uid://cnicuyyaogn8b" path="res://Asset/characters/Fire_Spirit/Run.png" id="4_pupi4"]
 [ext_resource type="PackedScene" uid="uid://ckdtcrw34tmn2" path="res://scenes/components/hit_box.tscn" id="4_yjmwp"]
 [ext_resource type="PackedScene" uid="uid://chpnq8bj3qaob" path="res://scenes/components/life_component.tscn" id="5_l17fm"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="6_baf4b"]
 [ext_resource type="Script" path="res://scripts/states/enemy/enemy_idle.gd" id="7_k5ili"]
 [ext_resource type="Script" path="res://scripts/states/enemy/enemy_follow.gd" id="8_dvhv2"]
-[ext_resource type="Script" path="res://scripts/states/enemy/enemy_attack.gd" id="10_wh7tf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g20r0"]
-radius = 12.0
+radius = 11.2778
 height = 35.7129
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecc7c"]
-size = Vector2(4.3, 14.87)
+size = Vector2(4, 14.87)
 
 [sub_resource type="Animation" id="Animation_pj0bq"]
 length = 0.001
@@ -95,54 +93,79 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D:scale")
+tracks/6/path = NodePath("enemyBody/CollisionShape2D:shape")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"update": 1,
+"values": [SubResource("CapsuleShape2D_g20r0")]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath(".:scale")
+tracks/7/path = NodePath("enemyBody/CollisionShape2D:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1.06404, 1.118)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
-tracks/8/enabled = false
-tracks/8/path = NodePath("Sprite2D:offset")
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite2D:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2.61, 0.85)]
+"values": [Vector2(1, 1)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Sprite2D:position")
+tracks/9/path = NodePath("enemyBody/CollisionShape2D:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, 3)]
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = false
+tracks/11/path = NodePath("Sprite2D:offset")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.61, 0.85)]
 }
 
 [sub_resource type="Animation" id="Animation_w7310"]
 resource_name = "idle"
+length = 0.7
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -176,7 +199,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"transitions": PackedFloat32Array(-2, -0.5, -2, -2, -2, -2),
 "update": 0,
 "values": [0, 1, 2, 3, 4, 5]
 }
@@ -207,38 +230,50 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:scale")
+tracks/5/path = NodePath("enemyBody/CollisionShape2D:shape")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"update": 1,
+"values": [SubResource("CapsuleShape2D_g20r0")]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D:offset")
+tracks/6/path = NodePath("enemyBody/CollisionShape2D:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.02, -0.025), Vector2(0.02, -0.025)]
+"values": [Vector2(1.06404, 1.118)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D:position")
+tracks/7/path = NodePath("Sprite2D:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, 3)]
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite2D:offset")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.02, -0.025)]
 }
 
 [sub_resource type="Animation" id="Animation_wgm7t"]
@@ -336,122 +371,80 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D:scale")
+tracks/7/path = NodePath("enemyBody/CollisionShape2D:shape")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"update": 1,
+"values": [SubResource("CapsuleShape2D_g20r0")]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath(".:scale")
+tracks/8/path = NodePath("enemyBody/CollisionShape2D:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1.06404, 1.118)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Sprite2D:offset")
+tracks/9/path = NodePath("Sprite2D:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(5.015, 16.055)]
+"values": [Vector2(1, 1)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Sprite2D:position")
+tracks/10/path = NodePath("enemyBody/CollisionShape2D:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, 3)]
+"values": [0.0]
 }
-
-[sub_resource type="Animation" id="Animation_csn5l"]
-resource_name = "run"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_pupi4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.02, -0.025)]
+"values": [Vector2(1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:hframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Sprite2D:offset")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, 21)]
+"values": [Vector2(5.015, 16.055)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_41seq"]
 _data = {
 "RESET": SubResource("Animation_pj0bq"),
 "idle": SubResource("Animation_w7310"),
-"run": SubResource("Animation_csn5l"),
 "shoot": SubResource("Animation_wgm7t")
 }
 
@@ -460,18 +453,18 @@ radius = 14.1421
 
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(-4, -18)
-collision_layer = 0
+collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_wqc5h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, 3)
+position = Vector2(3, 1)
 texture = ExtResource("2_33pha")
 offset = Vector2(0.02, -0.025)
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 20)
+position = Vector2(3, 15)
 scale = Vector2(1.06404, 1.118)
 shape = SubResource("CapsuleShape2D_g20r0")
 
@@ -483,11 +476,17 @@ scale = Vector2(3, 3)
 target_position = Vector2(120, 0)
 
 [node name="lineOfSight" type="ShapeCast2D" parent="."]
-light_mask = 16
 position = Vector2(5, 14)
 scale = Vector2(6.054, 2)
 shape = SubResource("RectangleShape2D_ecc7c")
-target_position = Vector2(30, 0)
+target_position = Vector2(40, 0)
+
+[node name="enemyBody" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemyBody"]
+position = Vector2(3, 15)
+scale = Vector2(1.06404, 1.118)
+shape = SubResource("CapsuleShape2D_g20r0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -513,26 +512,17 @@ shape = SubResource("CircleShape2D_wqn1v")
 script = ExtResource("6_baf4b")
 init_state = NodePath("EnemyIdle")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "frontRayCast", "backRayCast", "lineOfSightCast", "timer", "animationPlayer")]
+[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "frontRayCast", "backRayCast", "timer")]
 script = ExtResource("7_k5ili")
 enemy = NodePath("../..")
+speed = null
 frontRayCast = NodePath("../../frontFloorCast")
 backRayCast = NodePath("../../backFloorCast")
-lineOfSightCast = NodePath("../../followRayCast")
 timer = NodePath("../../Timer")
-animationPlayer = NodePath("../../AnimationPlayer")
 
-[node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "followRayCast", "animationPlayer")]
+[node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_dvhv2")
 enemy = NodePath("../..")
-followRayCast = NodePath("../../followRayCast")
-animationPlayer = NodePath("../../AnimationPlayer")
-
-[node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "enemy", "line_of_sight")]
-script = ExtResource("10_wh7tf")
-animation_player = NodePath("../../AnimationPlayer")
-enemy = NodePath("../..")
-line_of_sight = NodePath("../../lineOfSight")
 
 [node name="frontFloorCast" type="RayCast2D" parent="."]
 position = Vector2(21, 18)

@@ -9,10 +9,7 @@ class_name Player
 @onready var attackSprite:= $attackSprite
 
 
-var states: Dictionary = {
-	"test": 1,
-	1: 2
-}
+var states: Dictionary = {}
 
 
 
@@ -57,7 +54,8 @@ func _physics_process(delta):
 	if Input.is_action_pressed("up") && is_on_floor():
 		# Check if there is stamina to jump
 		if stamina <= 0 && jump_timer.time_left == 0:
-			jump_timer.connect("timeout", staminaReset)
+			if !jump_timer.timeout.is_connected(staminaReset):
+				jump_timer.connect("timeout", staminaReset)
 			jump_timer.start()
 		elif stamina >=100:
 			stamina -= 100
