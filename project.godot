@@ -27,6 +27,18 @@ window/stretch/mode="canvas_items"
 
 movie_writer/movie_file="C:/Users/JOERGE/Documents/test.avi"
 
+[file_customization]
+
+folder_colors={
+"res://Asset/": "blue",
+"res://scenes/": "red",
+"res://scenes/components/": "red",
+"res://scripts/": "green",
+"res://scripts/class/": "orange",
+"res://scripts/component/": "blue",
+"res://scripts/states/": "purple"
+}
+
 [input]
 
 left={

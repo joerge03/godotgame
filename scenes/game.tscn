@@ -27,7 +27,7 @@ position = Vector2(914, 248)
 [node name="Ground2" type="StaticBody2D" parent="." groups=["ground"]]
 light_mask = 2
 position = Vector2(603, 126)
-scale = Vector2(0.0787045, 0.525824)
+scale = Vector2(0.198707, 0.525824)
 collision_layer = 2
 collision_mask = 255
 
@@ -75,7 +75,7 @@ position = Vector2(110, 243)
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="enemy" parent="Traps" instance=ExtResource("5_cdxl4")]
-position = Vector2(595, 89)
+position = Vector2(556, 236)
 
 [node name="Trap" parent="Traps" instance=ExtResource("6_5e280")]
 position = Vector2(805, 246)

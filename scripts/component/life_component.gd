@@ -12,7 +12,6 @@ func _ready():
 
 
 func damage(attack: Attack):
-	#print(default_health, "hadsgasd")
 	default_health -= attack.attack_damage
 	if default_health <= 0:
 		get_parent().queue_free()

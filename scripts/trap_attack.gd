@@ -1,10 +1,14 @@
-extends Area2D
 class_name TrapAttack
+extends Area2D
 
 
 signal enemyHitPlayer
 
 @onready var animation = $AnimatedSprite2D
+
+var enemy = EnemyClass.new()
+
+var fireball_Projectile_speed = enemy.fireball_projectile_speed
 
 
 
@@ -32,11 +36,9 @@ func flipSprite(isTrue: bool  = animation.flip_h):
 		
 func _physics_process(delta):
 	if animation.flip_h == true:
-		#print_debug("flipped")
-		global_position.x = global_position.x - (100 * delta)
+		global_position.x = global_position.x - ( fireball_Projectile_speed * delta)
 	else :
-		#print_debug("not_flipped")
-		global_position.x = global_position.x + (100 * delta)
+		global_position.x = global_position.x + ( fireball_Projectile_speed * delta)
 		
 	
 	

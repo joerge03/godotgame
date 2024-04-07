@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://b30mq6ba3btsw"]
+[gd_scene load_steps=75 format=3 uid="uid://b30mq6ba3btsw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0tncr"]
 [ext_resource type="Texture2D" uid="uid://cna0by68e0wj5" path="res://Asset/characters/Skeleton/Attack_1.png" id="1_cmevc"]
@@ -464,12 +464,9 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p8y4g"]
-radius = 12.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67agp"]
 radius = 7.0
-height = 38.0
+height = 62.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_664vw"]
 size = Vector2(23.5, 17.5)
@@ -623,12 +620,8 @@ animation = &"Idle"
 frame_progress = 0.839391
 flip_h = true
 
-[node name="headCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -55)
-shape = SubResource("CircleShape2D_p8y4g")
-
 [node name="bodyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -19)
+position = Vector2(-2, -35)
 shape = SubResource("CapsuleShape2D_67agp")
 
 [node name="Jump_timer" type="Timer" parent="."]

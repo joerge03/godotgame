@@ -6,7 +6,6 @@ extends Area2D
 
 func damage(attack: Attack):
 	if life_component:
-		#print("damage at atataat")
 		life_component.damage(attack)
 	
 	

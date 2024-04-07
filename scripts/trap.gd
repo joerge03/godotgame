@@ -11,7 +11,6 @@ signal triggerTrap
 
 func bodyEnteredHandler(body):
 	if body is Player:
-		print("asdfasdf")
 		triggerTrap.emit(body)
 		
 		

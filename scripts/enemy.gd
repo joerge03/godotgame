@@ -1,10 +1,11 @@
 extends CharacterBody2D
 signal triggerTrap
+signal open_shoot
 
-@onready var enemyBodyRef= $enemyBody
+@onready var enemyBodyRef= $HitBox
 @onready var trapAttackScene = preload("res://scenes/trap_attack.tscn")
 @onready var attackPointRef = $attackPoint
-@onready var animationPlayer = $AnimationPlayer
+#@onready var animationPlayer = $AnimationPlayer
 @onready var lineOfSightRef = $lineOfSight
 @onready var sprite2d = $Sprite2D
 @onready var attackCooldown = $attackCooldown
@@ -17,7 +18,9 @@ func bodyEnteredHandler(body):
 		emit_signal("triggerTrap", body)
 		
 func idle():
-	animationPlayer.play("idle")
+	#animationPlayer.play("idle")
+	pass
+	
 
 func attack():
 	var lineOfSiteValue: Player
@@ -65,26 +68,19 @@ func _physics_process(_delta):
 	if velocity.x != 0:
 		sprite2d.flip_h = velocity.x < 0
 		 
-	lineOfSightRef.target_position.x = -abs(line_of_sight_scale_y) if velocity.x < 0 else abs(line_of_sight_scale_y) 
-	followRayCast.target_position.x = -abs(follow_ray_cast_scale_y) if velocity.x < 0 else abs(follow_ray_cast_scale_y)
-	print(followRayCast.scale.y, "follow cast")
-	print(lineOfSightRef.scale.y)
+		lineOfSightRef.target_position.x = -abs(line_of_sight_scale_y) if sprite2d.flip_h else abs(line_of_sight_scale_y) 
+		followRayCast.target_position.x = -abs(follow_ray_cast_scale_y) if sprite2d.flip_h else abs(follow_ray_cast_scale_y)
 		
 		
 		
 	
 	# CHECK IF IS COLLIDING WITH PLAYER
-	var isCollidingWithPlayer = lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player
-	if  isCollidingWithPlayer && attackCooldown.is_stopped() && attackCooldown.time_left == 0:
-		# SET IF THE ENEMY IS LOOKING LEFT OR RIGHT
-		var player:Player = lineOfSightRef.get_collider(0)
-		sprite2d.flip_h = global_position.x > player.global_position.x
-		
+	if lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player:
+		var player: Player = lineOfSightRef.get_collider(0) 
+		print("is emit")
+			
+		open_shoot.emit()
 		# START THE SHOOT ANIMATION
-		animationPlayer.play("shoot")
-		attackCooldown.start()
-	elif !isCollidingWithPlayer:
-		attackCooldown.stop()
 		
 	#CHECK IF ENEMY IS FALLING
 	if !frontRayCast.is_colliding() || !backRayCast.is_colliding():

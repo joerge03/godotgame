@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bplpe4xolc6wl"]
+[gd_scene load_steps=18 format=3 uid="uid://bplpe4xolc6wl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wqc5h"]
 [ext_resource type="Texture2D" uid="uid://cig3idvpcdudr" path="res://Asset/characters/Fire_Spirit/Shot.png" id="2_33pha"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="6_baf4b"]
 [ext_resource type="Script" path="res://scripts/states/enemy/enemy_idle.gd" id="7_k5ili"]
 [ext_resource type="Script" path="res://scripts/states/enemy/enemy_follow.gd" id="8_dvhv2"]
-[ext_resource type="Script" path="res://scripts/states/enemy/enemy_attack.gd" id="10_wh7tf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g20r0"]
 radius = 12.0
@@ -474,6 +473,7 @@ hframes = 6
 position = Vector2(3, 20)
 scale = Vector2(1.06404, 1.118)
 shape = SubResource("CapsuleShape2D_g20r0")
+one_way_collision = true
 
 [node name="attackPoint" type="Node" parent="."]
 
@@ -513,26 +513,19 @@ shape = SubResource("CircleShape2D_wqn1v")
 script = ExtResource("6_baf4b")
 init_state = NodePath("EnemyIdle")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "frontRayCast", "backRayCast", "lineOfSightCast", "timer", "animationPlayer")]
+[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "frontRayCast", "backRayCast", "lineOfSightCast", "timer")]
 script = ExtResource("7_k5ili")
 enemy = NodePath("../..")
 frontRayCast = NodePath("../../frontFloorCast")
 backRayCast = NodePath("../../backFloorCast")
 lineOfSightCast = NodePath("../../followRayCast")
 timer = NodePath("../../Timer")
-animationPlayer = NodePath("../../AnimationPlayer")
 
 [node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "followRayCast", "animationPlayer")]
 script = ExtResource("8_dvhv2")
 enemy = NodePath("../..")
 followRayCast = NodePath("../../followRayCast")
 animationPlayer = NodePath("../../AnimationPlayer")
-
-[node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "enemy", "line_of_sight")]
-script = ExtResource("10_wh7tf")
-animation_player = NodePath("../../AnimationPlayer")
-enemy = NodePath("../..")
-line_of_sight = NodePath("../../lineOfSight")
 
 [node name="frontFloorCast" type="RayCast2D" parent="."]
 position = Vector2(21, 18)

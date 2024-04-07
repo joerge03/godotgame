@@ -17,16 +17,11 @@ func _ready():
 		current_state = init_state
 			
 func on_transition(state: State, new_state_name: String):
-	#print("tranasdfasdf")
 	var latest_state: State = states.get(new_state_name.to_lower())
 	if state == current_state && current_state && state && latest_state:
 		current_state._exit()
 		latest_state._enter()
 		current_state = latest_state
-		
-		
-		 
-		
 
 func _process(delta):
 	if current_state:
