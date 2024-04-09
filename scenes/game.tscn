@@ -75,7 +75,7 @@ position = Vector2(110, 243)
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="enemy" parent="Traps" instance=ExtResource("5_cdxl4")]
-position = Vector2(556, 236)
+position = Vector2(544, 76)
 
 [node name="Trap" parent="Traps" instance=ExtResource("6_5e280")]
 position = Vector2(805, 246)

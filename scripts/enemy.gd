@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody2D
 signal triggerTrap
 signal open_shoot
@@ -37,7 +38,7 @@ func attack():
 		return
 		
 		
-	trapAttackInstance.global_position.y = global_position.y + 10
+	trapAttackInstance.global_position.y = global_position.y + 20
 	if isPlayerLeft:
 		trapAttackInstance.flipSprite(true)
 		trapAttackInstance.global_position.x = global_position.x - 20
@@ -76,11 +77,8 @@ func _physics_process(_delta):
 	
 	# CHECK IF IS COLLIDING WITH PLAYER
 	if lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player:
-		var player: Player = lineOfSightRef.get_collider(0) 
-		print("is emit")
-			
+		var player: Player = lineOfSightRef.get_collider(0)
 		open_shoot.emit()
-		# START THE SHOOT ANIMATION
 		
 	#CHECK IF ENEMY IS FALLING
 	if !frontRayCast.is_colliding() || !backRayCast.is_colliding():
