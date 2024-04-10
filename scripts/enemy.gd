@@ -17,6 +17,8 @@ signal open_shoot
 func bodyEnteredHandler(body):
 	if body is Player:
 		emit_signal("triggerTrap", body)
+var lineOfSiteValue: Player
+var isPlayerLeft: bool
 		
 func idle():
 	#animationPlayer.play("idle")
@@ -24,21 +26,18 @@ func idle():
 	
 
 func attack():
-	var lineOfSiteValue: Player
-	var isPlayerLeft 
 	var trapAttackInstance: TrapAttack = trapAttackScene.instantiate()
-	if lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player:
-		lineOfSiteValue = lineOfSightRef.get_collider(0)
-		isPlayerLeft =  global_position.x > lineOfSiteValue.global_position.x
+	
+	
+	
+	trapAttackInstance.enemyHitPlayer.connect(bodyEnteredHandler)
+	attackPointRef.add_child(trapAttackInstance)
+	#else:
+		#attackCooldown.stop()
+		#return
 		
-		trapAttackInstance.enemyHitPlayer.connect(bodyEnteredHandler)
-		attackPointRef.add_child(trapAttackInstance)
-	else:
-		attackCooldown.stop()
-		return
 		
-		
-	trapAttackInstance.global_position.y = global_position.y + 20
+	trapAttackInstance.global_position.y = global_position.y + 5
 	if isPlayerLeft:
 		trapAttackInstance.flipSprite(true)
 		trapAttackInstance.global_position.x = global_position.x - 20
@@ -79,10 +78,12 @@ func _physics_process(_delta):
 	if lineOfSightRef.is_colliding() && lineOfSightRef.get_collider(0) is Player:
 		var player: Player = lineOfSightRef.get_collider(0)
 		open_shoot.emit()
-		
+		lineOfSiteValue = lineOfSightRef.get_collider(0)
+		isPlayerLeft =  global_position.x > lineOfSiteValue.global_position.x
 	#CHECK IF ENEMY IS FALLING
 	if !frontRayCast.is_colliding() || !backRayCast.is_colliding():
 		velocity.x = abs(velocity.x) if velocity.x < 0 else -abs(velocity.x) 
+	
 		
 		
 	

@@ -477,6 +477,7 @@ script = ExtResource("10_wh7tf")
 animation_player = NodePath("../../AnimationPlayer")
 enemy = NodePath("../..")
 line_of_sight = NodePath("../../lineOfSight")
+timer_def = null
 
 [node name="frontFloorCast" type="RayCast2D" parent="."]
 position = Vector2(21, 18)

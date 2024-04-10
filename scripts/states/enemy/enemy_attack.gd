@@ -5,7 +5,7 @@ extends State
 @export var animation_player: AnimationPlayer
 @export var enemy: CharacterBody2D
 @export var line_of_sight: ShapeCast2D
-@export var timer_def:= 0.2
+@export var timer_def:= 1
 
 
 
@@ -25,8 +25,10 @@ func _physics_update(delta):
 		print(timer)
 	elif enemy && line_of_sight && line_of_sight.is_colliding() && line_of_sight.get_collider(0) is Player:
 		animation_player.play("shoot")
-		print("shoot")
+		timer = timer_def
+		print(timer,"shoot")
 	else:
+		print(timer,"signal emit idledsads")
 		print("transition to enemy idle")
 		is_transition.emit(self, "EnemyIdle")
 

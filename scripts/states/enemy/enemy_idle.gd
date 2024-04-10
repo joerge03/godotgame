@@ -53,7 +53,7 @@ func _physics_update(delta):
 	
 	## VARIABLES	
 	# direction to move "where" the enemy is
-	var direction = sign(player.global_position.x - enemy.global_position.x)
+	var direction =  sign(player.global_position.x - enemy.global_position.x)
 		
 	if enemy:
 		enemy.velocity.x =  directionX * enemyClass.enemy_walk_speed

@@ -70,6 +70,7 @@ _data = {
 
 [node name="Trap" type="Node2D" groups=["enemy"]]
 light_mask = 16
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_jnmne")
 speed = 10.0
 

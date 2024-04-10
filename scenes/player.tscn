@@ -363,13 +363,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5kkxw")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_kfa56")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_f7n28")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_m1yk1")
 }, {
 "duration": 1.0,
@@ -383,6 +383,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g76lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfa56")
 }],
 "loop": true,
 "name": &"Jump",
@@ -605,6 +608,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0tncr")
 
 [node name="attackSprite" type="Sprite2D" parent="."]
@@ -616,11 +620,12 @@ hframes = 7
 visible = false
 position = Vector2(0, -65)
 sprite_frames = SubResource("SpriteFrames_2d2op")
-animation = &"Idle"
-frame_progress = 0.839391
+animation = &"Jump"
+frame_progress = 0.400221
 flip_h = true
 
 [node name="bodyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-2, -35)
 shape = SubResource("CapsuleShape2D_67agp")
 
@@ -645,6 +650,6 @@ visibility_layer = 9
 z_index = 100
 z_as_relative = false
 position = Vector2(-1, -110)
-zoom = Vector2(1.2, 1.2)
-limit_top = -80
-limit_bottom = 400
+zoom = Vector2(1.8, 1.8)
+limit_top = -100
+limit_smoothed = true
