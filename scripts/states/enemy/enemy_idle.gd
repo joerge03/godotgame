@@ -25,10 +25,10 @@ func transitionToAttack():
 func wander():
 		if !(frontRayCast.is_colliding() && backRayCast.is_colliding()) && timer.time_left == 0 && timer.is_stopped():
 			directionX = -1 if directionX > 0 else 1
-			time = randf_range(0.5,1 )
 		else:
 			directionX = randi_range(-1,1)
-			time = randf_range(1,2)
+			
+		time = 1
 			
 func _enter():
 	print("idle")
@@ -41,13 +41,13 @@ func _enter():
 	
 func _update(delta):
 		var isOnEdge = !(frontRayCast.is_colliding() && backRayCast.is_colliding())
-		if !(frontRayCast.is_colliding() && backRayCast.is_colliding()) && timer.time_left == 0:
+		if isOnEdge && timer.time_left == 0:
 			wander()
+			print("2")
 			timer.start(1)
-		else:
-			if time >0:
-				time -= delta
-			else: wander()
+		if time >0:
+			time -= delta
+		elif !isOnEdge: wander()
 	
 func _physics_update(delta):
 	
