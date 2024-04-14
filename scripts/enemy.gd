@@ -28,8 +28,6 @@ func idle():
 func attack():
 	var trapAttackInstance: TrapAttack = trapAttackScene.instantiate()
 	
-	
-	
 	trapAttackInstance.enemyHitPlayer.connect(bodyEnteredHandler)
 	attackPointRef.add_child(trapAttackInstance)
 	#else:

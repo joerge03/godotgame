@@ -650,6 +650,5 @@ visibility_layer = 9
 z_index = 100
 z_as_relative = false
 position = Vector2(-1, -110)
-zoom = Vector2(1.8, 1.8)
-limit_top = -100
+zoom = Vector2(2, 2)
 limit_smoothed = true

@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://c4asygnljnc73"]
+
+[ext_resource type="Texture2D" uid="uid://cun1r53vl28ca" path="res://Asset/background/BG_BlueMountain_Far.png" id="1_nly51"]
+[ext_resource type="Texture2D" uid="uid://bxitusou45qa5" path="res://Asset/background/Clouds4.png" id="2_5br6r"]
+[ext_resource type="Texture2D" uid="uid://7bkcttlfro81" path="res://Asset/background/Clouds1.png" id="2_30xq7"]
+[ext_resource type="Texture2D" uid="uid://bho1l6wm4spyg" path="res://Asset/background/Clouds6.png" id="2_76fvm"]
+[ext_resource type="Texture2D" uid="uid://blbk1gqwytb1a" path="res://Asset/background/BG_BlueSky.png" id="2_xn6d5"]
+[ext_resource type="Texture2D" uid="uid://kcw0is5toy3h" path="res://Asset/background/BG_BlueMountain_Close.png" id="3_t6ffd"]
+[ext_resource type="Texture2D" uid="uid://jf773nu7o8sf" path="res://Asset/background/Clouds7.png" id="4_g32pu"]
+[ext_resource type="Texture2D" uid="uid://pni6ngo7j0gj" path="res://Asset/background/Clouds5.png" id="5_32cn2"]
+[ext_resource type="Texture2D" uid="uid://djgbspg68ninm" path="res://Asset/background/Clouds2.png" id="9_852ke"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sky" type="Sprite2D" parent="sky"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_xn6d5")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 640)
+
+[node name="Clouds4" type="Sprite2D" parent="sky"]
+position = Vector2(771, 47)
+texture = ExtResource("2_5br6r")
+
+[node name="Clouds6" type="Sprite2D" parent="sky"]
+position = Vector2(398, 66)
+texture = ExtResource("2_76fvm")
+
+[node name="Clouds1" type="Sprite2D" parent="sky"]
+position = Vector2(89, 103)
+texture = ExtResource("2_30xq7")
+
+[node name="Clouds2" type="Sprite2D" parent="sky"]
+position = Vector2(138, 36)
+texture = ExtResource("9_852ke")
+
+[node name="Clouds5" type="Sprite2D" parent="sky"]
+z_index = 10
+position = Vector2(241, 115)
+texture = ExtResource("5_32cn2")
+
+[node name="FarMountain" type="ParallaxLayer" parent="."]
+position = Vector2(-137, -24)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="BgBlueMountainFar" type="Sprite2D" parent="FarMountain"]
+position = Vector2(159, 191)
+texture = ExtResource("1_nly51")
+
+[node name="BgBlueMountainFar2" type="Sprite2D" parent="FarMountain"]
+position = Vector2(475, 192)
+texture = ExtResource("1_nly51")
+
+[node name="BgBlueMountainFar3" type="Sprite2D" parent="FarMountain"]
+position = Vector2(788, 187)
+texture = ExtResource("1_nly51")
+flip_h = true
+
+[node name="Clouds7" type="Sprite2D" parent="FarMountain"]
+position = Vector2(214, 188)
+texture = ExtResource("4_g32pu")
+
+[node name="Clouds5" type="Sprite2D" parent="FarMountain"]
+position = Vector2(354, 116)
+texture = ExtResource("5_32cn2")
+
+[node name="Clouds6" type="Sprite2D" parent="FarMountain"]
+position = Vector2(562, 159)
+texture = ExtResource("5_32cn2")
+
+[node name="BgBlueMountainFar4" type="Sprite2D" parent="FarMountain"]
+position = Vector2(1089, 188)
+texture = ExtResource("1_nly51")
+
+[node name="FarMountain2" type="ParallaxLayer" parent="."]
+position = Vector2(44, 13)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Clouds7" type="Sprite2D" parent="FarMountain2"]
+position = Vector2(600, 177)
+texture = ExtResource("4_g32pu")
+flip_h = true
+
+[node name="BgBlueMountainFar" type="Sprite2D" parent="FarMountain2"]
+position = Vector2(159, 190)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_t6ffd")
+
+[node name="BgBlueMountainFar2" type="Sprite2D" parent="FarMountain2"]
+position = Vector2(566, 192)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_t6ffd")
+
+[node name="BgBlueMountainFar3" type="Sprite2D" parent="FarMountain2"]
+position = Vector2(972, 191)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_t6ffd")
+flip_h = true
+
+[node name="Clouds2" type="Sprite2D" parent="FarMountain2"]
+position = Vector2(250, 161)
+texture = ExtResource("9_852ke")
+
+[node name="Clouds1" type="Sprite2D" parent="FarMountain2"]
+position = Vector2(853, 148)
+texture = ExtResource("2_30xq7")
