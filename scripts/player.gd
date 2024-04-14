@@ -25,6 +25,8 @@ var states: Dictionary = {}
 
 var stamina = defaultStamina
 
+var timer: float = 4
+
 
 func staminaReset():
 	stamina = defaultStamina
@@ -32,12 +34,27 @@ func staminaReset():
 
 func _ready():
 	attack_collision.position = Vector2(30, -25)
+	
+	
+func _process(delta):
+	
+	#STAMINA RESETER WHEN GET ENOUGH REST (YOU SHOULD TOO!)
+	
+	if timer > 0:
+		print(timer)
+		timer -= delta
+	elif stamina != defaultStamina :
+		print("test")
+		staminaReset()
 
 
 func _physics_process(delta):
 	var direction = Input.get_axis("left","right")
 
 	var isMovement = direction== -1 || direction == 1
+	
+	#print(stamina, "stamina")
+	#print(timer, "timer")
 
 
 	if !is_on_floor():
@@ -53,6 +70,7 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("up") && is_on_floor():
 		# Check if there is stamina to jump
+		timer = 4
 		if stamina <= 0 && jump_timer.time_left == 0:
 			if !jump_timer.timeout.is_connected(staminaReset):
 				jump_timer.connect("timeout", staminaReset)
