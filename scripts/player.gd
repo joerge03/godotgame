@@ -41,7 +41,6 @@ func _process(delta):
 	#STAMINA RESETER WHEN GET ENOUGH REST (YOU SHOULD TOO!)
 	
 	if timer > 0:
-		print(timer)
 		timer -= delta
 	elif stamina != defaultStamina :
 		print("test")
@@ -52,11 +51,8 @@ func _physics_process(delta):
 	var direction = Input.get_axis("left","right")
 
 	var isMovement = direction== -1 || direction == 1
+	print(animationPlayer.current_animation)
 	
-	#print(stamina, "stamina")
-	#print(timer, "timer")
-
-
 	if !is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y >= 600:
@@ -106,8 +102,13 @@ func updateAnimation(direction, isMovement):
 		#else:
 			#attack_collision.position.x = abs(attack_collision.position.x)
 
-	if !is_on_floor():
-		animated_sprite.play("Jump")
+	
+	if is_on_floor() && Input.is_action_pressed("up"):
+			animated_sprite.play("Jump1")
+			return
+	if !is_on_floor() && animated_sprite:
+		animated_sprite.play("Fall")
+		
 		return
 	if Input.is_action_pressed("run") && isMovement:
 		animated_sprite.play("Run")

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b0okhe4ydjgdo" path="res://Asset/characters/Fire_Spirit/Charge.png" id="2_odc27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2s3w2"]
-size = Vector2(18, 27)
+size = Vector2(2, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fycpr"]
 atlas = ExtResource("2_odc27")
@@ -77,7 +77,7 @@ script = ExtResource("1_bf1v7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 32
-position = Vector2(-2, 2)
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_2s3w2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

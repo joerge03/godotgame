@@ -410,7 +410,7 @@ script = ExtResource("1_wqc5h")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, 3)
 texture = ExtResource("2_33pha")
-offset = Vector2(5.015, 16.055)
+offset = Vector2(0.02, -0.025)
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -427,7 +427,7 @@ target_position = Vector2(120, 0)
 
 [node name="lineOfSight" type="ShapeCast2D" parent="."]
 light_mask = 16
-position = Vector2(7, 10)
+position = Vector2(25, 12)
 scale = Vector2(6.054, 2)
 shape = SubResource("RectangleShape2D_ecc7c")
 target_position = Vector2(30, 0)

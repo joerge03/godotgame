@@ -35,19 +35,24 @@ func attack():
 		#return
 		
 		
-	trapAttackInstance.global_position.y = global_position.y + 5
+	trapAttackInstance.global_position.y = global_position.y + 8
 	if isPlayerLeft:
 		trapAttackInstance.flipSprite(true)
-		trapAttackInstance.global_position.x = global_position.x - 20
+		trapAttackInstance.global_position.x = global_position.x - 10
 	else:
-		trapAttackInstance.global_position.x = global_position.x + 30
-		trapAttackInstance.flipSprite( false)
+		trapAttackInstance.global_position.x = global_position.x + 15
+		trapAttackInstance.flipSprite(false)
 
 
 		
 func _process(_delta):
-	#TO FOLLOW THE ENEMY RAYCAST
-	lineOfSightRef.scale.y = -lineOfSightRef.scale.y if sprite2d.flip_h else abs(lineOfSightRef.scale.y)  
+	#TO FLIP THE LINEOFSIGHT raycast with sprite2d
+	if sprite2d.flip_h:
+		lineOfSightRef.scale.y = -lineOfSightRef.scale.y 
+		lineOfSightRef.position.x = -abs(lineOfSightRef.position.x) 
+	else:
+		lineOfSightRef.position.x = abs(lineOfSightRef.position.x) 
+		lineOfSightRef.scale.y = abs(lineOfSightRef.scale.y)  
 		
 	
 
